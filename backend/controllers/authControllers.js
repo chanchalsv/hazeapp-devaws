@@ -2,7 +2,7 @@ const userModel = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const JWT = require("jsonwebtoken");
 const sendEmail = require('../utils/sendEmails');
-const secretKey = process.env.JWT_SECRET || '12345';
+const secretKey = "ABC12345";
 
 const generateToken = (userId) => {
 	return JWT.sign({ userId }, secretKey, { expiresIn: '1h' })
