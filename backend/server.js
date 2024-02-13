@@ -17,14 +17,12 @@ dotenv.config();
 // Connect to MongoDB
 connectDb();
 
-// Middleware
 app.use(bodyParser.json());
-// app.use(cors()); // Allow all CORS requests
-app.use(
-	cors({
-		"origin": "*",
-	})
-);
+app.use(cors({
+	origin: 'http://44.212.193.143:8080', // Specify the allowed origin
+	methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed HTTP methods
+	allowedHeaders: ['Content-Type', 'Authorization'], // Specify the allowed headers
+}));
 app.use(morgan("dev")); // Log HTTP requests
 
 // Serve static files from the frontend build directory
