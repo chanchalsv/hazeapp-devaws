@@ -73,7 +73,12 @@ connectDb();
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors()); // Allow all CORS requests
+// app.use(cors()); // Allow all CORS requests
+app.use(
+	cors({
+		"origin": "*",
+	})
+);
 app.use(morgan("dev")); // Log HTTP requests
 
 // Serve static files from the frontend build directory
