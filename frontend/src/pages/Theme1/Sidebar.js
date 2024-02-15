@@ -10,14 +10,19 @@ const Sidebar = () => {
   const [InputType, setInputType] = useState("");
   const [displayType, setDisplayType] = useState("");
   const handleModal = (e, type) => {
-    console.log("hiiiiiii")
+    console.log("hiiiiiii");
     setOpenModal(type);
   };
-  useEffect(()=>{
-    const data= JSON.parse(localStorage.getItem("selectedData")) ||{}
-    console.log("data",data)
-    dispatch(setProductDataInput({InputType:data?.productDataInput?.InputType ,displayType:data?.productDataInput?.displayType}))
-},[])
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("selectedData")) || {};
+    console.log("data", data);
+    dispatch(
+      setProductDataInput({
+        InputType: data?.productDataInput?.InputType,
+        displayType: data?.productDataInput?.displayType,
+      })
+    );
+  }, []);
 
   const handleSubmitData = (e) => {
     e.preventDefault();
@@ -26,25 +31,22 @@ const Sidebar = () => {
       displayType,
     };
 
-	localStorage.setItem(
-        "selectedData",
-        JSON.stringify({ ...selectedData, productDataInput:formData })
-      )
+    localStorage.setItem(
+      "selectedData",
+      JSON.stringify({ ...selectedData, productDataInput: formData })
+    );
     dispatch(setProductDataInput(formData));
-    setOpenModal(false)
+    setOpenModal(false);
   };
 
-  const dispalyType={
-  color: !InputType && 'gray',
-  pointerEvents: !InputType&& "none",
-  
-  }
+  const dispalyType = {
+    color: !InputType && "gray",
+    pointerEvents: !InputType && "none",
+  };
 
-  const dispalyTypeHead={
-    color: !InputType && 'gray',
-
-    }
-  
+  const dispalyTypeHead = {
+    color: !InputType && "gray",
+  };
 
   return (
     <div class="sider_baar m-0 p-0">
@@ -66,7 +68,7 @@ const Sidebar = () => {
       <div class="add_theme_row">
         <div class="button_list">
           <div className=" w-100 d-flex justify-content-between">
-            <span >
+            <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="28"
@@ -115,7 +117,7 @@ const Sidebar = () => {
               </svg>
             </span>
 
-            <span onClick={(e) => handleModal(e, true)} >
+            <span onClick={(e) => handleModal(e, true)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 id="interactiveSVG"
@@ -170,28 +172,34 @@ const Sidebar = () => {
                   </span>
                   <span class="add_modal_name">Thumbnail</span>
                 </li>
-                <li class="add_modal_Select_menu"
-				onClick={() => setInputType("Dropdown")}
-				>
+                <li
+                  class="add_modal_Select_menu"
+                  onClick={() => setInputType("Dropdown")}
+                >
                   <span class="add_modal_icon">
                     <img src="assets/Image/drop.svg" />
                   </span>
                   <span class="add_modal_name">Dropdown</span>
                 </li>
-                <li class="add_modal_Select_menu"
-								onClick={() => setInputType("Radio")}>
+                <li
+                  class="add_modal_Select_menu"
+                  onClick={() => setInputType("Radio")}
+                >
                   <span class="add_modal_icon">
-                  <img src="assets/Image/them/Thumbnails Button.svg" />
+                    <img src="assets/Image/them/Thumbnails Button.svg" />
                   </span>
                   <span class="add_modal_name">Radio Button</span>
                 </li>
-                <li class="add_modal_Select_menu" onClick={() => setInputType("Label")}>
+                <li
+                  class="add_modal_Select_menu"
+                  onClick={() => setInputType("Label")}
+                >
                   <span class="add_modal_icon">
                     <img src="assets/Image/modal/lable.svg" />
                   </span>
                   <span class="add_modal_name">Label</span>
                 </li>
-                <li class="add_modal_Select_menu" >
+                <li class="add_modal_Select_menu">
                   <span class="add_modal_icon">
                     <img src="assets/Image/modal/uplod.svg" />
                   </span>
@@ -207,7 +215,12 @@ const Sidebar = () => {
                   <span class="add_modal_icon">
                     <img src="assets/Image/modal/check.svg" />
                   </span>
-                  <span class="add_modal_name" onClick={() => setInputType("Checkbox")}>Checkbox</span>
+                  <span
+                    class="add_modal_name"
+                    onClick={() => setInputType("Checkbox")}
+                  >
+                    Checkbox
+                  </span>
                 </li>
                 <li class="add_modal_Select_menu">
                   <span class="add_modal_icon">
@@ -218,58 +231,60 @@ const Sidebar = () => {
                 <li class="add_modal_Select_menu"></li>
               </ul>
 
-<div className="select_display_type" style={dispalyType}>
-              <div class="add_modal_header">
-                <div class="add_modal_titel" style={dispalyTypeHead}>2. Select a Display Type</div>
-              </div>
-              {/* {InputType  && */}
-              <ul id={InputType && "menu2"} class="add_modal_Select_menu">
-                <li
-                  className={
-                    InputType
-                      ? "enabled add_modal_Select_menu "
-                      : "disabled add_modal_Select_menu"
-                  }
-                  onClick={() => {
-                    InputType && setDisplayType("Image");
-                  }}
-                >
-                  <span class="add_modal_icon">
-                    <img src="assets/Image/modal/img.svg" />
-                  </span>
-                  <span class="add_modal_name">Image</span>
-                </li>
-                <li class="add_modal_Select_menu">
-                  <span class="add_modal_icon">
-                    <img src="assets/Image/modal/colour.svg" />
-                  </span>
-                  <span class="add_modal_name">Colour</span>
-                </li>
-                <li class="add_modal_Select_menu">
-                  <span class="add_modal_icon">
-                    <img src="assets/Image/modal/text.svg" />
-                  </span>
-                  <span class="add_modal_name">Text</span>
-                </li>
-                <li class="add_modal_Select_menu">
-                  <span class="add_modal_icon">
-                    <img src="assets/Image/modal/font.svg" />
-                  </span>
-                  <span class="add_modal_name">Font</span>
-                </li>
-                <li class="add_modal_Select_menu">
-                  <span class="add_modal_icon">
-                    <img src="assets/Image/modal/font_cl.svg" />
-                  </span>
-                  <span class="add_modal_name">Font Colour</span>
-                </li>
-                <li class="add_modal_Select_menu">
-                  <span class="add_modal_icon">
-                    <img src="assets/Image/modal/logo_svg.svg" />
-                  </span>
-                  <span class="add_modal_name">Logo</span>
-                </li>
-              </ul>
+              <div className="select_display_type" style={dispalyType}>
+                <div class="add_modal_header">
+                  <div class="add_modal_titel" style={dispalyTypeHead}>
+                    2. Select a Display Type
+                  </div>
+                </div>
+                {/* {InputType  && */}
+                <ul id={InputType && "menu2"} class="add_modal_Select_menu">
+                  <li
+                    className={
+                      InputType
+                        ? "enabled add_modal_Select_menu "
+                        : "disabled add_modal_Select_menu"
+                    }
+                    onClick={() => {
+                      InputType && setDisplayType("Image");
+                    }}
+                  >
+                    <span class="add_modal_icon">
+                      <img src="assets/Image/modal/img.svg" />
+                    </span>
+                    <span class="add_modal_name">Image</span>
+                  </li>
+                  <li class="add_modal_Select_menu">
+                    <span class="add_modal_icon">
+                      <img src="assets/Image/modal/colour.svg" />
+                    </span>
+                    <span class="add_modal_name">Colour</span>
+                  </li>
+                  <li class="add_modal_Select_menu">
+                    <span class="add_modal_icon">
+                      <img src="assets/Image/modal/text.svg" />
+                    </span>
+                    <span class="add_modal_name">Text</span>
+                  </li>
+                  <li class="add_modal_Select_menu">
+                    <span class="add_modal_icon">
+                      <img src="assets/Image/modal/font.svg" />
+                    </span>
+                    <span class="add_modal_name">Font</span>
+                  </li>
+                  <li class="add_modal_Select_menu">
+                    <span class="add_modal_icon">
+                      <img src="assets/Image/modal/font_cl.svg" />
+                    </span>
+                    <span class="add_modal_name">Font Colour</span>
+                  </li>
+                  <li class="add_modal_Select_menu">
+                    <span class="add_modal_icon">
+                      <img src="assets/Image/modal/logo_svg.svg" />
+                    </span>
+                    <span class="add_modal_name">Logo</span>
+                  </li>
+                </ul>
               </div>
               <div class="add_theme_modal_footer">
                 <p>Please Select what you want to create</p>
@@ -288,72 +303,111 @@ const Sidebar = () => {
       )}
 
       <div class="add_theme_row">
-        
-        {title?.productDataInput?.InputType && title?.productDataInput?.displayType ? 
-        <div className="d-flex flex-column">
-        <div>
-         <div style={{ width:"270px", height:"50px",marginLeft:"-26px",background:"rgb(240,241,241)"}}>
-          <div className="d-flex pt-2 px-3"  >
-          <span><img src="assets/Image/modal/img.svg" height="30px"/></span>
-          <p className="px-2 d-flex pt-2">{title?.title || "Untitled Image"}  </p>
-
-          </div>
-         </div>
-        </div>
-          {title?.colour.colour &&
-        <div>
-         <div style={{ width:"270px", height:"50px",marginLeft:"-26px",background:"rgb(240,241,241)",marginTop:"10px"}}>
-          <div className="d-flex pt-2 px-3"  >
-          <span><img src="assets/Image/modal/colour.svg" height="30px"/></span>
-          <p className="px-2 d-flex pt-2">{title?.colour.colour || "Untitled Image"}  </p>
-
-          </div>
-         </div>
-        </div>
-      }
-       {title?.imageText?.textTitle &&
-        <div>
-         <div style={{ width:"270px", height:"50px",marginLeft:"-26px",background:"rgb(240,241,241)",marginTop:"10px"}}>
-          <div className="d-flex pt-2 px-3"  >
-          <span><img src="assets/Image/modal/text.svg" height="30px"/></span>
-          <p className="px-2 d-flex pt-2">{title?.imageText?.textTitle || "Untitled Image"}  </p>
-
-          </div>
-         </div>
-        </div>
-      }
-        
-        </div>
-        :
-         <div class="add_theme_Layers_section">
-          <div class="add_theme_cont">
-            <div class="add_theme_description">
-              There are no layers yet Create your first layer to build the
-              customizer
+        {title?.productDataInput?.InputType &&
+        title?.productDataInput?.displayType ? (
+          <div className="d-flex flex-column">
+            <div>
+              <div
+                style={{
+                  width: "270px",
+                  height: "50px",
+                  marginLeft: "-26px",
+                  background: "rgb(240,241,241)",
+                }}
+              >
+                <div className="d-flex pt-2 px-3">
+                  <span>
+                    <img src="assets/Image/modal/img.svg" height="30px" />
+                  </span>
+                  <p className="px-2 d-flex pt-2">
+                    {title?.title || "Untitled Image"}{" "}
+                  </p>
+                </div>
+              </div>
             </div>
-            <button
-              class="add_them_layers_button"
-              onClick={(e) => handleModal(e, true)} 
-            >
-              + Add Layer
-            </button>
+            {title?.colour.colour && (
+              <div>
+                <div
+                  style={{
+                    width: "270px",
+                    height: "50px",
+                    marginLeft: "-26px",
+                    background: "rgb(240,241,241)",
+                    marginTop: "10px",
+                  }}
+                >
+                  <div className="d-flex pt-2 px-3">
+                    <span>
+                      <img src="assets/Image/modal/colour.svg" height="30px" />
+                    </span>
+                    <p className="px-2 d-flex pt-2">
+                      {title?.colour.colour || "Untitled Image"}{" "}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+            {title?.imageText?.textTitle && (
+              <div>
+                <div
+                  style={{
+                    width: "270px",
+                    height: "50px",
+                    marginLeft: "-26px",
+                    background: "rgb(240,241,241)",
+                    marginTop: "10px",
+                  }}
+                >
+                  <div className="d-flex pt-2 px-3">
+                    <span>
+                      <img src="assets/Image/modal/text.svg" height="30px" />
+                    </span>
+                    <p className="px-2 d-flex pt-2">
+                      {title?.imageText?.textTitle || "Untitled Image"}{" "}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-        </div> 
-        }
+        ) : (
+          <div class="add_theme_Layers_section">
+            <div class="add_theme_cont">
+              <div class="add_theme_description">
+                There are no layers yet Create your first layer to build the
+                customizer
+              </div>
+              <button
+                class="add_them_layers_button"
+                onClick={(e) => handleModal(e, true)}
+              >
+                + Add Layer
+              </button>
+            </div>
+          </div>
+        )}
       </div>
-    
-        
-        {title?.colour?.colourTitle && title?.colour?.colourTitle && <div>
-         <div style={{ width:"270px", height:"50px",background:"rgb(240,241,241)"}}>
-          <div className="d-flex pt-2 px-3"  >
-          <span><img src="assets/Image/modal/img.svg" height="30px"/></span>
-          <p className="px-2 d-flex pt-2">{title?.colour?.colour || "Untitled Layer"}  </p>
 
+      {title?.colour?.colourTitle && title?.colour?.colourTitle && (
+        <div>
+          <div
+            style={{
+              width: "270px",
+              height: "50px",
+              background: "rgb(240,241,241)",
+            }}
+          >
+            <div className="d-flex pt-2 px-3">
+              <span>
+                <img src="assets/Image/modal/img.svg" height="30px" />
+              </span>
+              <p className="px-2 d-flex pt-2">
+                {title?.colour?.colour || "Untitled Layer"}{" "}
+              </p>
+            </div>
           </div>
-         </div>
         </div>
-        }
-    
+      )}
     </div>
   );
 };

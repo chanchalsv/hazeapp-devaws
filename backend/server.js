@@ -28,7 +28,6 @@ app.use(morgan("dev")); // Log HTTP requests
 // Serve static files from the frontend build directory
 const buildPath = path.join(__dirname, "../frontend/build");
 app.use(express.static(buildPath));
-
 // Define API routes
 app.use("/api/test", require("./routes/testRoutes"));
 app.use("/api/auth", require("./routes/authRoutes"));

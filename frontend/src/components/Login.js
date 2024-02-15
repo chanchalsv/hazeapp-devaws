@@ -1,6 +1,4 @@
-
-
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -8,14 +6,19 @@ import { loginUser } from "../features/userSlice";
 import { setAccessToken } from "../features/authSlice";
 import { completeShopifyAuth } from "../shopifyAuth";
 import "./Login/Login.css";
+import UserContext from "../contexts/UserContext";
 
 const Login = ({ handleChange }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordType, setPasswordType] = useState("password");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Add this line to import useNavigate from 'react-router-dom'
+
+  const togglePasswordVisibility = () => {
+    setPasswordType((prevType) => (prevType === "password" ? "text" : "password"));
+  };
 
   const handleLogin = async () => {
     try {
@@ -36,9 +39,11 @@ const Login = ({ handleChange }) => {
     } catch (error) {
       setError("An error occurred. Please try again later");
     }
+
+
   };
 
-  const togglePasswordVisibility = () => {
+  const set_PasswordType = () => {
     setPasswordType((prevType) =>
       prevType === "password" ? "text" : "password"
     );
@@ -67,12 +72,12 @@ const Login = ({ handleChange }) => {
           />
           <button
             className="password-btn"
-            onClick={togglePasswordVisibility}
+            onClick={set_PasswordType}
           >
             {passwordType === "password" ? (
-              <i className="bi bi-eye" />
+              <i class="bi bi-eye" />
             ) : (
-              <i className="bi bi-eye-slash" />
+              <i class="bi bi-eye-slash" />
             )}
           </button>
         </div>

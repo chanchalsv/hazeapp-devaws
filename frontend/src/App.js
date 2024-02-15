@@ -9,6 +9,7 @@ import { loginUser, setLoading } from "./features/userSlice";
 import Authenticate from "./pages/Authenticate";
 
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { UserProvider } from "./contexts/UserContext";
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -29,7 +30,6 @@ const App = (props) => {
       }
     });
     const storedData = JSON.parse(localStorage.getItem("user"))
-    // const storedData = localStorage.getItem("access_token");
     if (storedData) {
       dispatch(loginUser(storedData));
     }
@@ -91,7 +91,9 @@ const App = (props) => {
   const Provider = () => {
     return (
       <ThemeProvider>
-        <RoutedLayout />
+        <UserProvider>
+          <RoutedLayout />
+        </UserProvider>
       </ThemeProvider>
     );
   };

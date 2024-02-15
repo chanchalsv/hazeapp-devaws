@@ -14,7 +14,6 @@
 /hazeapi/node_modules
 
 
-
 # misc
 .DS_Store
 .env.local
@@ -30,3 +29,4 @@ yarn-error.log*
 
 .vercel
 /backend/node_modules
+

@@ -1,38 +1,21 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import Utils from "../../Utils";
+import ThemeContext from "../../contexts/ThemeContext";
 
 const LeftSidebar = ({ onAnchorClick }) => {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const selectedTheme = queryParams.get("selectedTheme") || 'Theme 1';
-
+  const { updateCustomizerData } = useContext(ThemeContext);
   const [activeLink, setActiveLink] = useState("Customizer_Title_list");
 
   const handleAnchorClick = (link) => {
     onAnchorClick(link);
     setActiveLink(link);
   };
-
-  const initialCustomizerData = {
-    ThemeType: {
-      ThemeSelect: selectedTheme,
-    },
-    CustomizerTitle: {
-      bgColor: "#ffff",
-      ftColor: "#ffff",
-      font: "",
-      fontSize: "",
-      fontSizeMobile: "",
-      ftColorMobile: "#ffff",
-      dividerColor: "#ffff",
-      dividerThickness: "",
-    },
-  };
   const resetTheme = () => {
     localStorage.setItem(
       "customizerData",
-      JSON.stringify(initialCustomizerData)
+      JSON.stringify(Utils.initialCustomizerData)
     );
+    updateCustomizerData(Utils.initialCustomizerData);
   };
   return (
     <div className="sider_baar">
@@ -461,7 +444,7 @@ const LeftSidebar = ({ onAnchorClick }) => {
                   activeLink === "Description_list" ? "active_list" : ""
                 }`}
               >
-                Description
+                Description(mobile)
               </span>
             </a>
           </li>

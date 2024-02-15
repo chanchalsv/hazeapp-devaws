@@ -10,7 +10,7 @@ const PricingRules = () => {
         <div className="pricing_rules_section">
           <div className=" products_hr"></div>
           <div className="pricing_rules">
-            <div className="row">
+            <div className="row pricing_rules_vr">
               <div className="pricing_rules_card">
                 <div className="pricing_rules_card_body">
                   <div className="pricing_rules_card_cont">
@@ -18,7 +18,9 @@ const PricingRules = () => {
                       <img src="assets/Image/svg/pricing_rule.svg" />
                     </div>
                     <div className="princing_rules_card_cont">
-                      <div className="pricing_rules_card_title">Simple Pricing</div>
+                      <div className="pricing_rules_card_title">
+                        Simple Pricing
+                      </div>
                       <div className="pricing_rules_card_description">
                         Customer Preview Img Desktop version
                       </div>
@@ -48,7 +50,6 @@ const PricingRules = () => {
                   </div>
                 </div>
               </div>
-              <div class="pricing_rules_vr">1</div>
               <div class="pricing_rules_card">
                 <div class="pricing_rules_card_body">
                   <div class="pricing_rules_card_cont">
