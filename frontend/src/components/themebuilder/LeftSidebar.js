@@ -471,10 +471,12 @@ const LeftSidebar = ({ onAnchorClick }) => {
           </li>
         </ul>
         <div className="Reset_theme_section">
-          <span className="Reset_theme_title">Reset your theme</span>
-          <button onClick={() => resetTheme()} className="Reset_theme_button">
-            Reset
-          </button>
+          <div className="reset__theme__box">
+            <span className="Reset_theme_title">Reset your theme</span>
+            <button onClick={() => resetTheme()} className="Reset_theme_button">
+              Reset
+            </button>
+          </div>
           <div className="Reset_cont">
             Restore your theme settings to their original value
           </div>

@@ -43,8 +43,6 @@ const LayerPanelList = () => {
             <option value="">Select Layer Position</option>
             <option value="left">Left</option>
             <option value="right">Right</option>
-            <option value="top">Top</option>
-            <option value="bottom">Bottom</option>
           </select>
         </div>
       </div>

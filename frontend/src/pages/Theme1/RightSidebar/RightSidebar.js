@@ -29,21 +29,22 @@ const RightSidebar = () => {
   });
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("selectedData")) || {};
-    console.log("imahe",data?.uploadedImage)
+    console.log("imahe", data?.uploadedImage);
     dispatch(setEnterTitleDis(data?.title));
     dispatch(setImageTitle(data?.imageTitle));
     dispatch(setUploadedImage(data?.uploadedImage));
-  }, [enterTitle,  dispatch]);
+  }, [enterTitle, dispatch]);
 
   // <------------------want to dispatch the data which is store in the local storage after refreshment------------------>
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("selectedData")) || {};
     // Check if the storedData.colour is an object and has the required properties
-    if (storedData.colour && typeof(storedData.colour) === "object") {
-      const {colour, colourTitle, createdColour, previewColor } = storedData.colour;
+    if (storedData.colour && typeof storedData.colour === "object") {
+      const { colour, colourTitle, createdColour, previewColor } =
+        storedData.colour;
       dispatch(
         setColourReducer({
-          colour:colour||"",
+          colour: colour || "",
           colourTitle: colourTitle || "",
           createdColour: createdColour || [],
           previewColor: previewColor || "",
@@ -86,7 +87,7 @@ const RightSidebar = () => {
 
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
-   
+
     if (selectedImage) {
       setFormData({
         ...formData,
@@ -97,7 +98,7 @@ const RightSidebar = () => {
         "selectedData",
         JSON.stringify({
           ...selectedData,
-          uploadedImage:objectURL,
+          uploadedImage: objectURL,
         })
       );
       dispatch(setUploadedImage(objectURL));
@@ -149,7 +150,6 @@ const RightSidebar = () => {
     <div class="right_wrapper ">
       {addImageData?.productDataInput?.displayType ? (
         <>
-          
           {/* <-------------ColorSidebar ------------------> */}
           {(addImageData?.productDataInput?.displayType == "Colour" ||
             rightSidebarColor) && <RightSidebarColor></RightSidebarColor>}
@@ -157,26 +157,26 @@ const RightSidebar = () => {
           {/* <------------- Image Sidebar ------------->*/}
           {addImageData?.productDataInput?.displayType == "Image" && (
             <>
-            <div class="add_theme_inner_container">
-            <div class="add_theme_inner_section">
-              <div class="add_theme_cont">
-                <span>Layers Settings</span>
+              <div class="add_theme_inner_container">
+                <div class="add_theme_inner_section">
+                  <div class="add_theme_cont">
+                    <span>Layers Settings</span>
+                  </div>
+                </div>
+                <hr />
+                <div class="add_theme_cont">
+                  <span>Title</span>
+                </div>
+                <input
+                  type="text"
+                  id="lname"
+                  name="lname"
+                  defaultValue={addImageData?.title}
+                  placeholder="Untitled Image"
+                  onChange={handleTitle}
+                  onKeyPress={handleKeyPress}
+                />
               </div>
-            </div>
-            <hr />
-            <div class="add_theme_cont">
-              <span>Title</span>
-            </div>
-            <input
-              type="text"
-              id="lname"
-              name="lname"
-              defaultValue={addImageData?.title}
-              placeholder="Untitled Image"
-              onChange={handleTitle}
-              onKeyPress={handleKeyPress}
-            />
-          </div>
               <hr />
               <div class="file_select_section">
                 <span class="file_select_title">Upload Image</span>
@@ -346,11 +346,15 @@ const RightSidebar = () => {
             </div>
 
             <div class="switch_button_row">
-              <span class="printing_methods_switch_tag">Large thumbnail</span>
-              <label class="printing_methods_switch_button">
-                <input type="checkbox" />
-                <span class="printing_methods_switch_slider printing_methods_switch_round"></span>
-              </label>
+              <div>
+                <span class="printing_methods_switch_tag">Large thumbnail</span>
+              </div>
+              <div className="printing__methods__check__btns">
+                <label class="printing_methods_switch_button">
+                  <input type="checkbox" />
+                  <span class="printing_methods_switch_slider printing_methods_switch_round"></span>
+                </label>
+              </div>
             </div>
 
             <div id="myModal" class="modal">

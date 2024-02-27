@@ -595,6 +595,10 @@ div#userDropdownOptions {
   color: var(--color-white);
 }
 
+.custom-user-dropdown-options a:hover img {
+  filter: invert(1);
+}
+
 .custom-user-dropdown-options a:hover svg path {
   fill: var(--color-white) !important;
 }
@@ -623,7 +627,8 @@ section.wrapper_section.theme_builder_wrapper_section {
 }
 
 main#main_section\ theme_builder_main_section .sidebar_list a {
-  padding: 0 20px;
+  width: 77%;
+  padding: 0;
 }
 
 /*   remove css
@@ -859,6 +864,75 @@ main#main_section\ theme_builder_main_section .select-items {
 
 .products_slid .swiper-pagination-bullet-active {
   background: var(--color-dark-gray) !important;
+}
+
+.products_slid {
+  height: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.products_slid .slick-track {
+  display: flex;
+}
+
+.products_slid .slick-track img {
+  width: 70%;
+}
+
+.products_slid .slick-prev {
+  position: absolute;
+  top: 45%;
+  right: 5%;
+  transform: translateY(-50%);
+  z-index: 99;
+}
+
+.products_slid .slick-prev svg,
+.products_slid .slick-next svg {
+  width: 30px;
+  cursor: pointer;
+}
+
+.products_slid .slick-next {
+  position: absolute;
+  top: 45%;
+  left: 3%;
+  transform: translateY(-50%);
+  z-index: 99;
+}
+
+.products_slid .slick-dots {
+  display: flex !important;
+  column-gap: 10px;
+  position: absolute;
+  left: 55%;
+  bottom: -3%;
+  transform: translateX(-50%);
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.products_slid .slick-dots li button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50px;
+  border: none;
+  background: #d9d9d9;
+}
+
+.products_slid .slick-dots .slick-active button {
+  background: #737373;
+}
+
+.products_slid .slick-dots li button {
+  text-indent: -9999px;
+}
+
+.products_slid .slick-slide > div > div {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ========================= themes Css end ========================= */
@@ -1359,16 +1433,6 @@ button.my_products_button i {
   position: relative;
   width: 100%;
   height: 100%;
-}
-
-.products_image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-  position: relative;
-  height: 80%;
-  box-sizing: border-box;
 }
 
 .products_card_cont {
@@ -2235,8 +2299,12 @@ ul#Brand_list {
 
 .switch_button_row {
   display: flex;
-
+  align-items: center;
   justify-content: space-between;
+}
+
+.printing__methods__check__btns {
+  padding-top: 10px;
 }
 
 span.printing_methods_switch_tag {
@@ -2294,8 +2362,8 @@ input:checked + .printing_methods_switch_slider:before {
 input:checked + .printing_methods_switch_slider {
   display: flex;
   align-items: center;
-  margin-top: 10px;
-  margin-left: 30px;
+  /* margin-top: 10px; */
+  /* margin-left: 30px; */
   background: linear-gradient(#fff, #fff) padding-box, var(--colour-gradient);
   color: #313149;
   border: 1px solid transparent;
@@ -2313,9 +2381,9 @@ input:focus + .printing_methods_switch_slider {
 }
 
 input:checked + .printing_methods_switch_slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translate(26px, -50%);
+  -ms-transform: translate(26px, -50%);
+  transform: translate(26px, -50%);
 }
 
 /* Rounded sliders */
@@ -2334,12 +2402,10 @@ input:checked + .printing_methods_switch_slider:before {
 .Reset_theme_button {
   width: 56px;
   height: 27px;
-  border: double 0 transparent;
+  border: 1px solid;
+  border-image: var(--colour-gradient);
   border-radius: 5px;
-  background-image: linear-gradient(#fff, #fff), var(--colour-gradient);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  padding: 1px;
+  background: linear-gradient(#fff, #fff) padding-box, var(--colour-gradient);
 }
 
 .theme_builder_wrapper_section
@@ -2362,7 +2428,7 @@ input:checked + .printing_methods_switch_slider:before {
 }
 
 section.wrapper_section.theme_builder_wrapper_section {
-  padding: 4% 0 0% 0;
+  padding: 0;
   justify-content: start;
 }
 
@@ -2382,11 +2448,20 @@ section.wrapper_section.theme_builder_wrapper_section .sidebar_menu {
   background-blend-mode: multiply;
 }
 
-.products_wrapper_row {
-  border: 1px solid var(--color-gainsboro);
-  border-left: 0;
-  border-right: 0;
-  padding: 0 25px;
+.products_wrapper_tag__main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.products_wrapper_tag__main h2 {
+  margin-bottom: 0;
+}
+
+.products_wrapper_tag__main .br__bttotom {
+  border-bottom: 1px solid #000;
+  padding: 5px 25px;
 }
 
 .col_padding {
@@ -2462,11 +2537,11 @@ button.them_button {
   width: 89px;
   height: 31px;
   margin-left: 10px;
-  border: double 0 transparent;
+  border: 1px solid;
+  border-image: var(--colour-gradient);
   border-radius: 5px;
-  background-image: linear-gradient(#f9f6ef, #f9f6ef), var(--colour-gradient);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
+  background: linear-gradient(#f9f6ef, #f9f6ef) padding-box,
+    var(--colour-gradient);
   padding: 1px;
 }
 
@@ -2527,6 +2602,7 @@ button.them_button {
   font-weight: 600;
   line-height: normal;
   padding-top: 20px !important;
+  margin-bottom: 10px;
 }
 
 .products_wrapper_tag {
@@ -2543,7 +2619,7 @@ button.them_button {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  width: 90%;
+  width: 80%;
 }
 
 .products_colour_section span {
@@ -2553,6 +2629,7 @@ button.them_button {
   border-radius: 5px;
   margin-right: 15px;
   margin-top: 15px;
+  cursor: pointer;
 }
 
 .products-active {
@@ -2653,6 +2730,11 @@ section.wrapper_section.theme_builder_wrapper_section .sidebar_menu {
   width: 60%;
 }
 
+.products_wrapper_col,
+.products_wrapper_tag {
+  padding: 0 25px;
+}
+
 .products_top_section {
   padding: 20px;
   padding-bottom: 0;
@@ -2669,7 +2751,8 @@ section.wrapper_section.theme_builder_wrapper_section .sidebar_menu {
 
 .products_top_section_row .products_button {
   display: flex;
-  justify-self: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .products_button button {
@@ -2882,6 +2965,16 @@ label.theme_check_button {
   border-top: 1px solid var(--color-gainsboro);
   padding: 20px;
   padding-right: 0;
+}
+
+.reset__theme__box {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 30px;
+  padding-right: 10px;
+  padding-bottom: 10px;
 }
 
 /* ========================= themes builder css start ========================= */
@@ -3268,6 +3361,7 @@ form#myForm ul li {
 
 .products_wrapper_tag.col_padding {
   margin-bottom: 8px;
+  margin-top: 15px;
 }
 
 /*theme_preview_view_one css ennd */
@@ -3991,4 +4085,100 @@ form#myForm ul li {
 
 li.add_modal_Select_menu.selected {
   border-color: red !important;
+}
+
+/* Accordions */
+
+.products__cont__three {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.products_wrapper_tag__main h2 {
+  padding: 0;
+}
+
+.accordion-title {
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.accordion-content.open {
+  max-height: 200px; /* Adjust the maximum height as needed */
+}
+
+.text__printed__acc {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-top: 10px;
+}
+
+.input__text__field__acc {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #737373;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+/* Accordions END */
+
+@media screen and (max-width: 1440px) {
+  .products_colour_section {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Select_Product_button,
+  .them_title {
+    display: none;
+  }
+
+  .right_wrapper {
+    display: none;
+    width: 0;
+  }
+
+  .wrapper_section.theme_builder_wrapper_section {
+    position: relative !important;
+  }
+
+  .center_wrapper {
+    width: 100%;
+  }
+
+  .products_wrapper {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
+
+  .products_col {
+    width: 100%;
+  }
+
+  .products_wrapper_tile {
+    color: var(--color-darkslategray) !important;
+  }
+
+  .products_colour_section {
+    width: 100%;
+  }
+
+  button.them_button {
+    width: 100%;
+    padding: 0 6px;
+  }
 }

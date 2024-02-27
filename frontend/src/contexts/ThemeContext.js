@@ -16,203 +16,110 @@ const ThemeProvider = (props) => {
   const handleColorChange = (newColor, elementId) => {
     setShowPicker(!showPicker);
     if (newColor && newColor.hex && elementId) {
+      if (
+        elementId === "CustomizerTitleBackgroundColor" ||
+        elementId === "CustomizerTitleFontColor" ||
+        elementId === "CustomizerTitleFontColorMobile" ||
+        elementId === "CustomizerTitleDividerColor"
+      ) {
+        setCustomizerData((prevData) => ({
+          ...prevData,
+          CustomizerTitle: {
+            ...prevData.CustomizerTitle,
+            [elementId === "CustomizerTitleBackgroundColor"
+              ? "CustomizerTitleBackgroundColor"
+              : elementId === "CustomizerTitleFontColor"
+              ? "CustomizerTitleFontColor"
+              : elementId === "CustomizerTitleFontColorMobile"
+              ? "CustomizerTitleFontColorMobile"
+              : elementId === "CustomizerTitleDividerColor"
+              ? "CustomizerTitleDividerColor"
+              : ""]: newColor.hex,
+          },
+        }));
+      }
+      if (
+        elementId === "LayersPanelBackgroundColor" ||
+        elementId === "LayersPanelBorderColor" ||
+        elementId === "LayersPanelErrorColor"
+      ) {
+        setCustomizerData((prevData) => ({
+          ...prevData,
+          LayersPanel: {
+            ...prevData.LayersPanel,
+            [elementId === "LayersPanelBackgroundColor"
+              ? "LayersPanelBackgroundColor"
+              : elementId === "LayersPanelBorderColor"
+              ? "LayersPanelBorderColor"
+              : elementId === "LayersPanelErrorColor"
+              ? "LayersPanelErrorColor"
+              : ""]: newColor.hex,
+          },
+        }));
+      }
+      if (
+        elementId === "LayersListFontColor" ||
+        elementId === "LayersListDiscriptionFontColor" ||
+        elementId === "LayersListDividerColor"
+      ) {
+        setCustomizerData((prevData) => ({
+          ...prevData,
+          LayersList: {
+            ...prevData.LayersList,
+            [elementId === "LayersListFontColor"
+              ? "LayersListFontColor"
+              : elementId === "LayersListDiscriptionFontColor"
+              ? "LayersListDiscriptionFontColor"
+              : elementId === "LayersListDividerColor"
+              ? "LayersListDividerColor"
+              : ""]: newColor.hex,
+          },
+        }));
+      }
+    }
+  };
+  const handleInputChange = ({ name, value }) => {
+    if (
+      name === "CustomizerTitleFontFamily" ||
+      name === "CustomizerTitleFontSize" ||
+      name === "CustomizerTitleFontSizeMobile" ||
+      name === "CustomizerTitleDividerThickness"
+    ) {
       setCustomizerData((prevData) => ({
         ...prevData,
         CustomizerTitle: {
           ...prevData.CustomizerTitle,
-          [elementId === "CustomizerTitleBackgroundColor"
-            ? "CustomizerTitleBackgroundColor"
-            : elementId === "CustomizerTitleFontColor"
-            ? "CustomizerTitleFontColor"
-            : elementId === "CustomizerTitleFontColorMobile"
-            ? "CustomizerTitleFontColorMobile"
-            : elementId === "CustomizerTitleDividerColor"
-            ? "CustomizerTitleDividerColor"
-            : ""]: newColor.hex,
-        },
-        LayersPanel: {
-          ...prevData.LayersPanel,
-          [elementId === "LayersPanelBackgroundColor"
-            ? "LayersPanelBackgroundColor"
-            : elementId === "LayersPanelBorderColor"
-            ? "LayersPanelBorderColor"
-            : elementId === "LayersPanelErrorColor"
-            ? "LayersPanelErrorColor"
-            : ""]: newColor.hex,
-        },
-        LayersList: {
-          ...prevData.LayersList,
-          [elementId === "LayersListFontColor"
-            ? "LayersListFontColor"
-            : elementId === "LayersListDiscriptionFontColor"
-            ? "LayersListDiscriptionFontColor"
-            : elementId === "LayersListDividerColor"
-            ? "LayersListDividerColor"
-            : ""]: newColor.hex,
-        },
-        LayersSettings: {
-          ...prevData.LayersSettings,
-          [elementId === "LayersSettingsBorderColor"
-            ? "LayersSettingsBorderColor"
-            : elementId === "LayersSettingsSelectedBorderColor"
-            ? "LayersSettingsSelectedBorderColor"
-            : elementId === "LayersSettingsFontColor"
-            ? "LayersSettingsFontColor"
-            : elementId === "LayersSettingsPopUpBackgroundColor"
-            ? "LayersSettingsPopUpBackgroundColor"
-            : elementId === "LayersSettingsDescriptionFontColor"
-            ? "LayersSettingsDescriptionFontColor"
-            : ""]: newColor.hex,
-        },
-        Customizer: {
-          ...prevData.Customizer,
-          [elementId === "CustomizerLoadingIconColor"
-            ? "CustomizerLoadingIconColor"
-            : elementId === "CustomizerBackgroundColor"
-            ? "CustomizerBackgroundColor"
-            : ""]: newColor.hex,
-        },
-        StepTitle: {
-          ...prevData.StepTitle,
-          [elementId === "StepTitleBackgroundColor"
-            ? "StepTitleBackgroundColor"
-            : elementId === "StepTitleSwitchStepsArrows"
-            ? "StepTitleSwitchStepsArrows"
-            : ""]: newColor.hex,
-        },
-        SummaryTitle: {
-          ...prevData.SummaryTitle,
-          [elementId === "SummaryTitleFontColor"
-            ? "SummaryTitleFontColor"
-            : ""]: newColor.hex,
-        },
-        AddToCart: {
-          ...prevData.AddToCart,
-          [elementId === "AddToCartBorderColor"
-            ? "BorderColor"
-            : elementId === "AddToCartFontColor"
-            ? "FontColor"
-            : elementId === "AddToCartBackgroundColor"
-            ? "BackgroundColor"
-            : elementId === "AddToCartHoverBkgColor"
-            ? "HoverBackgroundColor"
-            : ""]: newColor.hex,
-        },
-        ConfirmButtonMobile: {
-          ...prevData.ConfirmButtonMobile,
-          [elementId === "ConfirmButtonMobileFontColor"
-            ? "ConfirmButtonMobileFontColor"
-            : elementId === "ConfirmButtonMobileBackgroundColor"
-            ? "ConfirmButtonMobileBackgroundColor"
-            : ""]: newColor.hex,
-        },
-        Price: {
-          ...prevData.Price,
-          [elementId === "PriceFontColour"
-            ? "PriceFontColour"
-            : elementId === "PriceExtraPriceFontColor"
-            ? "PriceExtraPriceFontColor"
-            : elementId === "PriceExtraPriceBorderColor"
-            ? "PriceExtraPriceBorderColor"
-            : elementId === "PriceExtraPriceBackgroundColor"
-            ? "PriceExtraPriceBackgroundColor"
-            : ""]: newColor.hex,
-        },
-        SwitchViewArrows: {
-          ...prevData.SwitchViewArrows,
-          [elementId === "SwitchViewArrowsColor"
-            ? "SwitchViewArrowsColor"
-            : ""]: newColor.hex,
-        },
-        SwitchViewDots: {
-          ...prevData.SwitchViewDots,
-          [elementId === "SwitchViewDotsColour"
-            ? "SwitchViewDotsColour"
-            : elementId === "SwitchViewDotsSelectColour"
-            ? "SwitchViewDotsSelectColour"
-            : ""]: newColor.hex,
-        },
-        Zoom: {
-          ...prevData.Zoom,
-          [elementId === "ZoomColor" ? "ZoomColor" : ""]: newColor.hex,
-        },
-        ShareButton: {
-          ...prevData.ShareButton,
-          [elementId === "ShareButtonColor"
-            ? "ShareButtonColor"
-            : elementId === "DescriptionMobileBackgroundColor"
-            ? "DescriptionMobileBackgroundColor"
-            : ""]: newColor.hex,
-        },
-        DescriptionMobile: {
-          ...prevData.DescriptionMobile,
-          [elementId === "DescriptionMobileColor"
-            ? "DescriptionMobileColor"
-            : elementId === "DescriptionMobileBackgroundColor"
-            ? "DescriptionMobileBackgroundColor"
-            : ""]: newColor.hex,
-        },
-        OutOfStock: {
-          ...prevData.OutOfStock,
-          [elementId === "OutOfStockBadgeIconColor"
-            ? "OutOfStockBadgeIconColor"
-            : elementId === "OutOfStockBadgeBackgroundColor"
-            ? "OutOfStockBadgeBackgroundColor"
-            : elementId === "OutOfStockBadgeBorderColor"
-            ? "OutOfStockBadgeBorderColor"
-            : elementId === "OutOfStockBadgeBannerTextColor"
-            ? "OutOfStockBannerTextColor"
-            : elementId === "OutOfStockBadgeBannerBkgColor"
-            ? "OutOfStockBannerBackgroundColor"
-            : ""]: newColor.hex,
+          [name]: value,
         },
       }));
     }
-  };
-  const handleInputChange = ({ name, value }) => {
-    setCustomizerData((prevData) => ({
-      ...prevData,
-      CustomizerTitle: {
-        ...prevData.CustomizerTitle,
-        [name]: value,
-      },
-      LayersPanel: {
-        ...prevData.LayersPanel,
-        [name]: value,
-      },
-      LayersList: {
-        ...prevData.LayersList,
-        [name]: value,
-      },
-      LayersSettings: {
-        ...prevData.LayersSettings,
-        [name]: value,
-      },
-      SummaryTitle: {
-        ...prevData.SummaryTitle,
-        [name]: value,
-      },
-      AddToCart: {
-        ...prevData.AddToCart,
-        [name]: value,
-      },
-      Price: {
-        ...prevData.Price,
-        [name]: value,
-      },
-      ShareButton: {
-        ...prevData.ShareButton,
-        [name]: value,
-      },
-      DescriptionMobile: {
-        ...prevData.DescriptionMobile,
-        [name]: value,
-      },
-      OutOfStock: {
-        ...prevData.OutOfStock,
-        [name]: value,
-      },
-    }));
+    if (
+      name === "LayersPanelPosition" ||
+      name === "LayersPanelBorderThickness"
+    ) {
+      setCustomizerData((prevData) => ({
+        ...prevData,
+        LayersPanel: {
+          ...prevData.LayersPanel,
+          [name]: value,
+        },
+      }));
+    }
+    if (
+      name === "LayersListFontSize" ||
+      name === "LayersListFontFamily" ||
+      name === "LayersListDiscriptionFontSize" ||
+      name === "LayersListDiscriptionFontFamily" ||
+      name === "LayersListDividerThickness"
+    ) {
+      setCustomizerData((prevData) => ({
+        ...prevData,
+        LayersList: {
+          ...prevData.LayersList,
+          [name]: value,
+        },
+      }));
+    }
   };
   const handleColorPickerClick = (e, elementId) => {
     e.stopPropagation();
@@ -273,7 +180,7 @@ const ThemeProvider = (props) => {
           ...customizerData,
           LayersList: {
             ...customizerData.LayersList,
-            ...customizerData.LayersList, 
+            ...customizerData.LayersList,
           },
         }
       : customizerData;
@@ -285,7 +192,7 @@ const ThemeProvider = (props) => {
           ...customizerData,
           LayersSettings: {
             ...customizerData.LayersSettings,
-            ...customizerData.LayersSettings, 
+            ...customizerData.LayersSettings,
           },
         }
       : customizerData;
